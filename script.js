@@ -1,4 +1,4 @@
-// Assignment Code
+// Assigning Variables
 var generateBtn = document.querySelector("#generate");
 var passwordLength = 0;
 var capitalInput = "";
@@ -10,8 +10,7 @@ var capitalAlphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L
 var specialCharacters = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "=", "+", "_", "[", "]", "|", "{", "}", ";", ":", "\"", "\\", "\'", "/", "?", ".", ",", ">", "<"];
 var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
-
-// Write password to the #password input
+// Body
 
 function writePassword() {
 
@@ -73,7 +72,6 @@ function writePassword() {
       return Math.floor(Math.random() * highestNum);
     }
     for (let i = 0; i < passwordLength; i++) {
-      // console.log("comment")
       // pickMe is so that the password isn't a pattern of capital letter -> lowercase -> special char -> number
       var pickMe = randomNum(4);
 
