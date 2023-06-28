@@ -17,12 +17,11 @@ function writePassword() {
 
   do {
     passwordLength = window.prompt("How many characters do you want your password to be? Must be between 8 and 128");
-    capitalInput = capitalInput.toUpperCase();
 
-    if (capitalInput != "Y" && capitalInput != "N") {
-      window.alert("Please enter a number");
+    if (passwordLength < 8 || passwordLength > 128) {
+      window.alert("Password must be between 8 and 128 characters long");
     }
-  } while (passwordLength != 0)
+  } while (passwordLength < 8 || passwordLength > 128)
 
   do {
     capitalInput = window.prompt("Do you want any capital letters? Y/N");
@@ -62,29 +61,45 @@ function writePassword() {
 
   function generatePassword() {
 
-    var tempPassword = "";
+    console.log(numberInput);
+    chosenNum = 0;
+    var tempPassword = [];
+    var newPassword = "";
 
     function randomNum(highestNum) {
       return Math.floor(Math.random() * highestNum);
     }
-    
-    if (capitalInput == "Y") {
-      randomNum(capitalAlphabet.length);
+    for (let i = 0; i <= passwordLength; i++) {
+      if (capitalInput == "Y") {
+        chosenNum = randomNum(capitalAlphabet.length);
+        tempPassword[i] = capitalAlphabet[chosenNum];
+        newPassword += tempPassword[i];
+        console.log(tempPassword);
+      }
+
+      if (lowerInput == "Y") {
+        chosenNum = randomNum(lowercaseAlphabet.length);
+        tempPassword[i] = lowercaseAlphabet[chosenNum];
+        newPassword += tempPassword[i];
+        console.log(tempPassword);
+      }
+
+      if (specialInput == "Y") {
+        chosenNum = randomNum(specialCharacters.length);
+        tempPassword[i] = specialCharacters[chosenNum];
+        newPassword += tempPassword[i];
+        console.log(tempPassword);
+      }
+      
+      if (numberInput == "Y") {
+        chosenNum = randomNum(numbers.length);
+        tempPassword[i] = numbers[chosenNum];
+        newPassword += tempPassword[i];
+        console.log(tempPassword);
+      } 
     }
 
-    if (lowerInput == "Y") {
-
-    }
-
-    if (specialInput == "Y") {
-
-    }
-    
-    if (numberInput == "Y") {
-
-    } 
-
-    return
+    return newPassword;
   }
 
   var password = generatePassword();
