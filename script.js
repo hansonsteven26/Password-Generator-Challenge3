@@ -69,34 +69,36 @@ function writePassword() {
     function randomNum(highestNum) {
       return Math.floor(Math.random() * highestNum);
     }
-    for (let i = 0; i <= passwordLength; i++) {
-      if (capitalInput == "Y") {
+    for (let i = 0; i < passwordLength; i++) {
+      // pickMe is so that the password isn't a pattern of capital letter -> lowercase -> special char -> number
+      var pickMe = randomNum(4);
+      if (capitalInput == "Y" && pickMe == 0) {
         chosenNum = randomNum(capitalAlphabet.length);
         tempPassword[i] = capitalAlphabet[chosenNum];
         newPassword += tempPassword[i];
-        console.log(tempPassword);
       }
 
-      if (lowerInput == "Y") {
+      if (lowerInput == "Y"  && pickMe == 1) {
         chosenNum = randomNum(lowercaseAlphabet.length);
         tempPassword[i] = lowercaseAlphabet[chosenNum];
         newPassword += tempPassword[i];
-        console.log(tempPassword);
       }
 
-      if (specialInput == "Y") {
+      if (specialInput == "Y"  && pickMe == 2) {
         chosenNum = randomNum(specialCharacters.length);
         tempPassword[i] = specialCharacters[chosenNum];
         newPassword += tempPassword[i];
-        console.log(tempPassword);
       }
       
-      if (numberInput == "Y") {
+      if (numberInput == "Y"  && pickMe == 3) {
         chosenNum = randomNum(numbers.length);
         tempPassword[i] = numbers[chosenNum];
         newPassword += tempPassword[i];
-        console.log(tempPassword);
       } 
+    }
+
+    if (capitalInput == "N" && lowerInput == "N" && specialInput == "N" && numberInput == "N") {
+      newPassword = "Well then I guess you just don't want a password, then";
     }
 
     return newPassword;
