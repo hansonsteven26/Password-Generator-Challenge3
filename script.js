@@ -61,40 +61,60 @@ function writePassword() {
 
   function generatePassword() {
 
-    console.log(numberInput);
     chosenNum = 0;
     var tempPassword = [];
     var newPassword = "";
+    capitalVar = false;
+    lowerVar = false;
+    specialVar = false;
+    numberVar = false;
 
     function randomNum(highestNum) {
       return Math.floor(Math.random() * highestNum);
     }
     for (let i = 0; i < passwordLength; i++) {
+      // console.log("comment")
       // pickMe is so that the password isn't a pattern of capital letter -> lowercase -> special char -> number
       var pickMe = randomNum(4);
+
+      console.log("pickMe: " + pickMe);
       if (capitalInput == "Y" && pickMe == 0) {
         chosenNum = randomNum(capitalAlphabet.length);
         tempPassword[i] = capitalAlphabet[chosenNum];
         newPassword += tempPassword[i];
+        capitalVar = true;
       }
 
-      if (lowerInput == "Y"  && pickMe == 1) {
+      if (lowerInput == "Y" && pickMe == 1) {
         chosenNum = randomNum(lowercaseAlphabet.length);
         tempPassword[i] = lowercaseAlphabet[chosenNum];
         newPassword += tempPassword[i];
+        lowerVar = true;
       }
 
-      if (specialInput == "Y"  && pickMe == 2) {
+      if (specialInput == "Y" && pickMe == 2) {
         chosenNum = randomNum(specialCharacters.length);
         tempPassword[i] = specialCharacters[chosenNum];
         newPassword += tempPassword[i];
+        specialVar = true;
       }
-      
-      if (numberInput == "Y"  && pickMe == 3) {
+
+      if (numberInput == "Y" && pickMe == 3) {
         chosenNum = randomNum(numbers.length);
         tempPassword[i] = numbers[chosenNum];
         newPassword += tempPassword[i];
-      } 
+        numberVar = true;
+      }
+
+      // This if-statement is so that in case none of the if-statements go through, i won't iterate without doing anything first
+      if (capitalVar == false && lowerVar == false && specialVar == false && numberVar == false) {
+        i = i - 1;
+      }
+
+      capitalVar = false;
+      lowerVar = false;
+      specialVar = false;
+      numberVar = false;
     }
 
     if (capitalInput == "N" && lowerInput == "N" && specialInput == "N" && numberInput == "N") {
